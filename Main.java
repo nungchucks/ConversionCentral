@@ -3,6 +3,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        DistanceConverter distanceConverter = new DistanceConverter();
+        TemperatureConverter temperatureConverter = new TemperatureConverter();
+        CurrencyConverter currencyConverter = new CurrencyConverter();
+        WeightConverter weightConverter = new WeightConverter();
         Scanner scanner = new Scanner(System.in);
         double converted;
         double converter;
@@ -19,12 +23,19 @@ public class Main {
             }
             switch (action) {
                 case 1 -> {
-                    DistanceConverter distanceConverter = new DistanceConverter();
-                    System.out.print("\nEnter a distance: ");
-                    converter = scanner.nextInt();
-                    distanceConverter.setDistance(converter);
                     System.out.print("\n1) Miles to KM\n2) KM to Miles\nWhat type of conversion would you like to do: ");
                     response = scanner.nextInt();
+                    while (response < 1 || response > 2) {
+                        System.out.print("Please enter 1 or 2: ");
+                        response = scanner.nextInt();
+                    }
+                    System.out.print("\nEnter a distance: ");
+                    converter = scanner.nextInt();
+                    while (converter < 0) {
+                        System.out.println("Please enter a valid distance: ");
+                        converter = scanner.nextDouble();
+                    }
+                    distanceConverter.setDistance(converter);
                     switch (response) {
                         case 1 -> {
                             distanceConverter.milesToKM(converter);
@@ -39,12 +50,15 @@ public class Main {
                     }
                 }
                 case 2 -> {
-                    TemperatureConverter temperatureConverter = new TemperatureConverter();
+                    System.out.print("\n1) Fahrenheit to Celsius\n2) Celsius to Fahrenheit\n3) Fahrenheit to Kelvin\n4) Kelvin to Fahrenheit\n5) Celsius to Kelvin\n6) Kelvin to Celsius\nWhat type of conversion would you like to do: ");
+                    response = scanner.nextInt();
+                    while (response < 1 || response > 6) {
+                        System.out.print("Please enter a valid choice between 1 and 6: ");
+                        response = scanner.nextInt();
+                    }
                     System.out.print("\nEnter a temperature: ");
                     converter = scanner.nextDouble();
                     temperatureConverter.setTemp(converter);
-                    System.out.print("\n1) Fahrenheit to Celsius\n2) Celsius to Fahrenheit\n3) Fahrenheit to Kelvin\n4) Kelvin to Fahrenheit\n5) Celsius to Kelvin\n6) Kelvin to Celsius\nWhat type of conversion would you like to do: ");
-                    response = scanner.nextInt();
                     switch (response) {
                         case 1 -> {
                             temperatureConverter.fahrenheitToC(converter);
@@ -79,12 +93,19 @@ public class Main {
                     }
                 }
                 case 3 -> {
-                    CurrencyConverter currencyConverter = new CurrencyConverter();
-                    System.out.print("\nEnter an amount: ");
-                    converter = scanner.nextDouble();
-                    currencyConverter.setAmount(converter);
                     System.out.print("\n1) USD to EUR\n2) EUR to USD\n3) USD to YEN\n4) YEN to USD\n5) EUR to YEN\n6) YEN to EUR\nWhat type of conversion would you like to do: ");
                     response = scanner.nextInt();
+                    while (response < 1 || response > 6) {
+                        System.out.print("Please enter a valid choice between 1 and 6: ");
+                        response = scanner.nextInt();
+                    }
+                    System.out.print("\nEnter an amount: ");
+                    converter = scanner.nextDouble();
+                    while (converter < 0) {
+                        System.out.println("Please enter a valid amount: ");
+                        converter = scanner.nextDouble();
+                    }
+                    currencyConverter.setAmount(converter);
                     switch (response) {
                         case 1 -> {
                             currencyConverter.usdToEUR(converter);
@@ -119,12 +140,19 @@ public class Main {
                     }
                 }
                 case 4 -> {
-                    WeightConverter weightConverter = new WeightConverter();
-                    System.out.print("\nEnter a weight: ");
-                    converter = scanner.nextDouble();
-                    weightConverter.setWeight(converter);
                     System.out.print("\n1) Pounds to Kilograms 2) Kilograms to Pounds\nWhat type of conversion would you like to make: ");
                     response = scanner.nextInt();
+                    while (response < 1 || response > 2) {
+                        System.out.print("Please enter 1 or 2: ");
+                        response = scanner.nextInt();
+                    }
+                    System.out.print("\nEnter a weight: ");
+                    converter = scanner.nextDouble();
+                    while (converter < 0) {
+                        System.out.println("Please enter a valid weight: ");
+                        converter = scanner.nextDouble();
+                    }
+                    weightConverter.setWeight(converter);
                     switch (response) {
                         case 1 -> {
                             weightConverter.lbsToKG(converter);
